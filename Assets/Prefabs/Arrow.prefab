@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7114584315485347822}
   - component: {fileID: 2097026962508304313}
   - component: {fileID: 8260346015056653306}
-  - component: {fileID: 3531529993823504079}
+  - component: {fileID: 8195701710680262173}
   - component: {fileID: 7826849966824928449}
   m_Layer: 0
   m_Name: Arrow
@@ -121,8 +121,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3531529993823504079
-BoxCollider2D:
+--- !u!60 &8195701710680262173
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -155,7 +155,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.15334427}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.28866667}
@@ -165,8 +165,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.8840219}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5773587}
+      - {x: -0.5, y: -0.28866667}
+      - {x: 0.5, y: -0.28866667}
+  m_UseDelaunayMesh: 1
 --- !u!114 &7826849966824928449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,4 +183,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e8fee34038e4f4cac8c7bd057e2d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
-  speed: 5
+  speed: 10
