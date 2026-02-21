@@ -62,7 +62,27 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = false;
+            isGrounded = true;
+            rb.gravityScale = 1f;
+        }
+
+        if (collision.gameObject.CompareTag("Arrow"))
+        {
+            Die();
         }
     }
+
+    public void Die()
+{
+    Debug.Log("Player Died");
+
+    // Option 1: Destroy player
+    // Destroy(gameObject);
+
+    // Option 2: Reload scene
+    // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+
+    // Option 3: Disable controls
+    enabled = false;
+}
 }
