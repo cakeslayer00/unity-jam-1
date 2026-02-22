@@ -223,7 +223,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2684344430345912852, guid: 4e44818f5ae25b44a90d0d28b3261c59, type: 3}
-  m_Color: {r: 0.9169811, g: 0.19896747, b: 0.19896747, a: 1}
+  m_Color: {r: 0.81761, g: 0.81761, b: 0.81761, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -280,6 +280,8 @@ MonoBehaviour:
   track: {fileID: 11400000, guid: 45b7921729b9dd44e8244046bfc50225, type: 2}
   musicSource: {fileID: 1866125049}
   spawnCenter: {x: 0, y: 0}
+  minAngleSeparation: 60
+  maxTries: 30
 --- !u!4 &1342218226
 Transform:
   m_ObjectHideFlags: 0
@@ -308,9 +310,10 @@ GameObject:
   - component: {fileID: 1413732363}
   - component: {fileID: 1413732362}
   - component: {fileID: 1413732366}
+  - component: {fileID: 1413732367}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -477,6 +480,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &1413732367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413732361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e2b8f5273ef0043826a5419af0f938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHitBlink
+  maxHits: 7
+  invincibleSeconds: 2
+  flickerInterval: 0.15
 --- !u!1 &1650709534
 GameObject:
   m_ObjectHideFlags: 0

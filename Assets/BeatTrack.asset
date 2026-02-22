@@ -14,12 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Track
   beatFile: {fileID: 4900000, guid: f9a1d48dbd509974b9f7fb479aad6ed7, type: 3}
   beatTimings:
-  - 0.475
-  - 0.936
-  - 1.167
-  - 1.398
-  - 1.628
-  - 1.859
   - 2.321
   - 2.782
   - 3.013
