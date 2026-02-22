@@ -6,36 +6,25 @@ public class ArrowSpawner : MonoBehaviour
     public Track track;
     public AudioSource musicSource;
 
-    [Header("Positions")]
-    public float spawnX = 10f;
-    public float targetX = 0f;
-    public float spawnY = 0.4f;
-
-    [Header("Arrow")]
-    public float arrowSpeed = 5f;
+    [Header("Spawn Center")]
+    public Vector2 spawnCenter = Vector2.zero; // set (0,0) or drag a Transform version below
 
     private int beatIndex = 0;
-    private float travelTime;
 
     void Start()
     {
-        // How long arrow needs to reach the player
-        float distance = spawnX - targetX;
-        travelTime = distance / arrowSpeed;
-
-        // Start music here (important!)
         musicSource.Play();
     }
 
     void Update()
     {
-        if (beatIndex >= track.beatTimings.Count)
-            return;
+        if (track == null || musicSource == null) return;
+        if (beatIndex >= track.beatTimings.Count) return;
 
         float songTime = musicSource.time;
-        float spawnTime = track.beatTimings[beatIndex] - travelTime;
+        float beatTime = track.beatTimings[beatIndex];
 
-        if (songTime >= spawnTime)
+        if (songTime >= beatTime)
         {
             SpawnArrow();
             beatIndex++;
@@ -44,8 +33,18 @@ public class ArrowSpawner : MonoBehaviour
 
     void SpawnArrow()
     {
-        Vector2 spawnPosition = new Vector2(spawnX, spawnY);
-        Quaternion rotation = Quaternion.Euler(0f, 0f, 90f);
-        Instantiate(arrowPrefab, spawnPosition, rotation);
+        Vector2 spawnPosition = Vector2.zero; // center of circle
+
+        GameObject arrowObj = Instantiate(arrowPrefab, spawnPosition, Quaternion.identity);
+
+        // Random direction (full circle)
+        float angle = Random.Range(0f, 360f);
+        Vector2 dir = new Vector2(
+            Mathf.Cos(angle * Mathf.Deg2Rad),
+            Mathf.Sin(angle * Mathf.Deg2Rad)
+        );
+
+        Arrow arrow = arrowObj.GetComponent<Arrow>();
+        arrow.Init(dir);
     }
 }
