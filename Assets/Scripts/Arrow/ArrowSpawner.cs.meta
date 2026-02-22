@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 33293b1b730fa5642b24d45170a9f0e4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - arrowPrefab: {fileID: 1441436515422447811, guid: cdec2bd63cdc8774190a3e1b9663a7c2, type: 3}
+  - track: {fileID: 11400000, guid: 45b7921729b9dd44e8244046bfc50225, type: 2}
+  - musicSource: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
