@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[Obsolete("This script is deprecated. Please use the new PlayerController2D instead.")]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpSpeed = 8f;
