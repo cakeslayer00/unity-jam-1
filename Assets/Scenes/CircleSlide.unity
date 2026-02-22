@@ -279,12 +279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95197ea4cc0ebb48ae5b9d6a166c726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CircleSlide
-  circleTag: Circle
-  circle: {fileID: 0}
-  box: {fileID: 0}
+  circle: {fileID: 908104542}
   extraInset: 0
-  angularSpeedDeg: 180
-  flipKey: 32
+  angularSpeedDegree: 180
 --- !u!50 &1413732363
 Rigidbody2D:
   serializedVersion: 5
