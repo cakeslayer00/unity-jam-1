@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Arrow\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Slide.cs" />
+    <Compile Include="Assets\Scripts\Player\CircleSlide.cs" />
     <Compile Include="Assets\Scripts\Arrow\ArrowSpawner.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
   </ItemGroup>
