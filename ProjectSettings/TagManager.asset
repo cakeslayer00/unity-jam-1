@@ -7,11 +7,12 @@ TagManager:
   - Ground
   - Arrow
   - Circle
+  - Platform
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Platform
   - Water
   - UI
   - 
