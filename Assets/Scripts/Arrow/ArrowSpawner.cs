@@ -4,7 +4,15 @@ public class ArrowSpawner : MonoBehaviour
 {
     public GameObject arrowPrefab;
     public Track track;
-    public AudioSource musicSource;
+
+    [Header("Music")]
+    public AudioSource musicSource; // will auto-find if null
+    [Tooltip("Tag on the persistent music GameObject (DontDestroyOnLoad).")]
+    public string musicTag = "Music";
+
+    [Header("Level timing")]
+    [Tooltip("Song time (seconds) when this scene should start spawning.")]
+    public float spawnStartTime = 0f;
 
     [Header("Spawn Center")]
     public Vector2 spawnCenter = Vector2.zero;
@@ -15,28 +23,53 @@ public class ArrowSpawner : MonoBehaviour
 
     private int beatIndex = 0;
     private float lastAngle = float.NaN;
+    private bool initialized = false;
 
-    void Start()
+    private void Awake()
     {
-        musicSource.Play();
+        // Find the persistent AudioSource at runtime
+        if (!musicSource)
+        {
+            var musicObj = GameObject.FindWithTag(musicTag);
+            if (musicObj) musicSource = musicObj.GetComponent<AudioSource>();
+        }
     }
 
-    void Update()
+    private void Update()
     {
         if (!track || !musicSource) return;
-        if (beatIndex >= track.beatTimings.Count) return;
+        if (!musicSource.isPlaying) return;
 
         float songTime = musicSource.time;
-        float beatTime = track.beatTimings[beatIndex];
 
-        if (songTime >= beatTime)
+        // Wait until this level's section starts
+        if (songTime < spawnStartTime) return;
+
+        // First frame after we reach spawnStartTime: jump to correct beat index
+        if (!initialized)
+        {
+            beatIndex = FindFirstBeatIndexAtOrAfter(spawnStartTime);
+            initialized = true;
+        }
+
+        // Spawn due beats (handles FPS drops)
+        while (beatIndex < track.beatTimings.Count && songTime >= track.beatTimings[beatIndex])
         {
             SpawnArrow();
             beatIndex++;
         }
     }
 
-    void SpawnArrow()
+    private int FindFirstBeatIndexAtOrAfter(float t)
+    {
+        for (int i = 0; i < track.beatTimings.Count; i++)
+            if (track.beatTimings[i] >= t)
+                return i;
+
+        return track.beatTimings.Count;
+    }
+
+    private void SpawnArrow()
     {
         Vector2 spawnPosition = spawnCenter;
         GameObject arrowObj = Instantiate(arrowPrefab, spawnPosition, Quaternion.identity);
@@ -50,27 +83,22 @@ public class ArrowSpawner : MonoBehaviour
         );
 
         Arrow arrow = arrowObj.GetComponent<Arrow>();
-        arrow.Init(dir);
+        if (arrow) arrow.Init(dir);
     }
 
-    float PickAngleNotNearPrevious()
+    private float PickAngleNotNearPrevious()
     {
-        // first arrow: anything
         if (float.IsNaN(lastAngle))
             return Random.Range(0f, 360f);
 
         for (int i = 0; i < maxTries; i++)
         {
             float candidate = Random.Range(0f, 360f);
-
-            // smallest difference on a circle
             float diff = Mathf.Abs(Mathf.DeltaAngle(candidate, lastAngle));
-
             if (diff >= minAngleSeparation)
                 return candidate;
         }
 
-        // Fallback if RNG is unlucky: force exactly min separation away
         return Mathf.Repeat(lastAngle + minAngleSeparation, 360f);
     }
 }

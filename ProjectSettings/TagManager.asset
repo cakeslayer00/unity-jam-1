@@ -8,6 +8,7 @@ TagManager:
   - Arrow
   - Circle
   - Platform
+  - Music
   layers:
   - Default
   - TransparentFX

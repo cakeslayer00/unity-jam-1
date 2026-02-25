@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 2384973999233593650, guid: 85257fea933e1bc4db757f875f08c178, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8629607039529408916, guid: 85257fea933e1bc4db757f875f08c178, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.80487
@@ -375,7 +379,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArrowSpawner
   arrowPrefab: {fileID: 1441436515422447811, guid: cdec2bd63cdc8774190a3e1b9663a7c2, type: 3}
   track: {fileID: 11400000, guid: 45b7921729b9dd44e8244046bfc50225, type: 2}
-  musicSource: {fileID: 1866125049}
+  musicSource: {fileID: 0}
+  musicTag: Music
+  spawnStartTime: 44
   spawnCenter: {x: 0, y: 0}
   minAngleSeparation: 60
   maxTries: 30

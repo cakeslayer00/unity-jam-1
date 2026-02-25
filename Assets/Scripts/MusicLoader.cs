@@ -1,20 +1,17 @@
 using UnityEngine;
 
-public class MusicPlayer : MonoBehaviour
+public class MusicLoader : MonoBehaviour
 {
-    private static MusicPlayer instance;
+    public static MusicLoader Instance;
+    public AudioSource source;
 
     void Awake()
     {
-        // If another MusicPlayer already exists, kill this one
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // This is the one true instance
-        instance = this;
+        if (Instance != null) { Destroy(gameObject); return; }
+        Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        if (!source) source = GetComponent<AudioSource>();
+        if (!source.isPlaying) source.Play();
     }
 }
