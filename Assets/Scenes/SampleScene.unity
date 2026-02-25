@@ -440,6 +440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 359924247}
   - component: {fileID: 359924246}
+  - component: {fileID: 359924248}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -559,6 +560,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &359924248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359924245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2378bb86ff9990147bc5f49e4052c566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicPlayer
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1116,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   onlyX: 1
-  onFinished:
+  fireAt: 0.9
+  onNearEnd:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 717489926412506457}
@@ -1169,18 +1183,6 @@ PrefabInstance:
     - target: {fileID: 8629607039529408916, guid: 85257fea933e1bc4db757f875f08c178, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8953595951651956784, guid: 85257fea933e1bc4db757f875f08c178, type: 3}
-      propertyPath: m_Color.b
-      value: 0.00013527626
-      objectReference: {fileID: 0}
-    - target: {fileID: 8953595951651956784, guid: 85257fea933e1bc4db757f875f08c178, type: 3}
-      propertyPath: m_Color.g
-      value: 0.00013527626
-      objectReference: {fileID: 0}
-    - target: {fileID: 8953595951651956784, guid: 85257fea933e1bc4db757f875f08c178, type: 3}
-      propertyPath: m_Color.r
-      value: 0.0037735105
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

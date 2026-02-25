@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class PlatformSpawner : MonoBehaviour
 {
@@ -23,6 +24,12 @@ public class PlatformSpawner : MonoBehaviour
         (80f, 13f, 0.3f)
     };
 
+    [Header("Timed Event")]
+    [SerializeField] private float eventTime = 13f;
+    [SerializeField] private UnityEvent onEventTime;
+
+    private bool eventFired;
+
     private bool spawnLow = true;
 
     void Start()
@@ -36,6 +43,13 @@ public class PlatformSpawner : MonoBehaviour
     void Update()
     {
         CurrentSpeed = Mathf.MoveTowards(CurrentSpeed, targetSpeed, speedLerpRate * Time.deltaTime);
+
+        // fires once when time crosses 13s
+        if (!eventFired && Time.timeSinceLevelLoad >= eventTime)
+        {
+            eventFired = true;
+            onEventTime?.Invoke();
+        }
     }
 
     IEnumerator SpeedController()
@@ -46,6 +60,7 @@ public class PlatformSpawner : MonoBehaviour
             float waitTime = s.time - (Time.time - startTime);
             if (waitTime > 0)
                 yield return new WaitForSeconds(waitTime);
+
             targetSpeed = s.speed;
             currentInterval = s.interval;
         }
