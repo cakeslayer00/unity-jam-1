@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Platform\PlatformMover.cs" />
+    <Compile Include="Assets\Scripts\BeatGlowSprite.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerHitBlink.cs" />
     <Compile Include="Assets\Scripts\Platform\PlatformSpawner.cs" />
+    <Compile Include="Assets\Scripts\Arrow\ArrowSpawnerSampleScene.cs" />
     <Compile Include="Assets\Scripts\BoundaryMove.cs" />
     <Compile Include="Assets\Scripts\Arrow\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Slide.cs" />
@@ -61,7 +63,7 @@
     <Compile Include="Assets\Scripts\Arrow\Track.cs" />
     <Compile Include="Assets\Scripts\Arrow\ArrowSpawner.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Arrow\BeatGlowSprite.cs" />
+    <Compile Include="Assets\Scripts\Arrow\ArrowSampleScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Arrow\beats.txt" />

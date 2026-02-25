@@ -1,25 +1,43 @@
-using System.Net;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Slide : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+[Header("Wall follow")]
+    [SerializeField] private Transform wall;
+    [SerializeField] private float xOffsetFromWall = 0.8f;   // distance from wall
 
-    private float _direction = 1f;
+    [Header("Player movement")]
+    [SerializeField] private float speedY = 10f;
+    [SerializeField] private float topY = 4f;                // WORLD bounds
+    [SerializeField] private float bottomY = -4f;
 
-    private void Start()
+    private Rigidbody2D rb;
+    private float direction = 1f;
+
+    private void Awake()
     {
-
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
+        rb.freezeRotation = true;
     }
 
     private void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            _direction *= -1f;
-        }
-        transform.Translate(_direction * Vector2.up * (_speed * Time.deltaTime));
+            direction *= -1f;
+    }
+
+    private void FixedUpdate()
+    {
+        if (!wall) return;
+
+        float targetX = wall.position.x + xOffsetFromWall;
+
+        float newY = rb.position.y + direction * speedY * Time.fixedDeltaTime;
+        newY = Mathf.Clamp(newY, bottomY, topY);
+
+        rb.MovePosition(new Vector2(targetX, newY));
     }
 }
