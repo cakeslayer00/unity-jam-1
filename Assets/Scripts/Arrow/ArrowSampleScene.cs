@@ -24,8 +24,14 @@ public class ArrowSampleScene : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Hit!"); // TODO:
+            var health = collision.GetComponent<PlayerHealth>();
+            if (health != null)
+                health.TakeHit(1);
+
+            Destroy(gameObject);
+            return;
         }
+
         Destroy(gameObject);
     }
 
