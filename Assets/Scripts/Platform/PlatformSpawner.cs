@@ -16,12 +16,11 @@ public class PlatformSpawner : MonoBehaviour
 
     private (float time, float speed, float interval)[] speedMap = new (float, float, float)[]
     {
-        (0f, 6f, 0.35f),
-        (10f, 9f, 0.35f),
-        (24f, 13f, 0.3f),
-        (39f, 6f, 0.35f),
-        (47f, 10f, 0.3f),
-        (80f, 13f, 0.3f)
+        
+        (0f, 10f, 0.33f),   // Было 0.4 -> стало 0.3 (дистанция сократится)
+        (10f, 14f, 0.3f), // Было 0.35 -> стало 0.25
+        (24f, 18f, 0.2f),  // Было 0.3 -> стало 0.2
+        
     };
 
     [Header("Timed Event")]
@@ -78,10 +77,26 @@ public class PlatformSpawner : MonoBehaviour
         }
     }
 
+    // Измените начальное значение здесь
+    private bool spawnOnTop = false; 
+
     void SpawnPlatform()
     {
-        spawnLow = !spawnLow;
-        float y = spawnLow ? lowY : highY;
+        // При первом вызове false превратится в true -> первая платформа ВЕРХНЯЯ
+        spawnOnTop = !spawnOnTop;
+
+        float y;
+        if (spawnOnTop)
+        {
+            // Рандом вокруг верхней точки
+            y = Random.Range(highY - 1.2f, highY + 1.2f); 
+        }
+        else
+        {
+            // Рандом вокруг нижней точки
+            y = Random.Range(lowY - 1.2f, lowY + 1.2f);
+        }
+
         Vector3 spawnPos = new Vector3(spawnX, y, 0);
         Instantiate(platformPrefab, spawnPos, Quaternion.identity);
     }

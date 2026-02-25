@@ -5,7 +5,9 @@ public class GravityPlayerController : MonoBehaviour
 {
     [SerializeField] private float gravityStrength = 5f;
     [SerializeField] private float rayLength = 0.6f;
-
+    [SerializeField] private FlashEffect flashEffect;
+    
+    private bool wasOnPlatform;
     private Rigidbody2D rb;
     private bool gravityDown = true;
 
@@ -18,6 +20,12 @@ public class GravityPlayerController : MonoBehaviour
     void Update()
     {
         bool isOnPlatform = IsOnPlatform();
+        
+        if (isOnPlatform && !wasOnPlatform)
+        {
+            flashEffect.TriggerFlash();
+        }
+        wasOnPlatform = isOnPlatform;
 
         if (Mouse.current.leftButton.wasPressedThisFrame && isOnPlatform)
         {
