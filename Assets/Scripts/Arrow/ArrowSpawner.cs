@@ -23,7 +23,7 @@ public class ArrowSpawner : MonoBehaviour
 
     void Update()
     {
-        if (track == null || musicSource == null) return;
+        if (!track || !musicSource) return;
         if (beatIndex >= track.beatTimings.Count) return;
 
         float songTime = musicSource.time;

@@ -130,6 +130,8 @@ GameObject:
   - component: {fileID: 908104544}
   - component: {fileID: 908104543}
   - component: {fileID: 908104542}
+  - component: {fileID: 908104545}
+  - component: {fileID: 908104546}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Circle
@@ -223,7 +225,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2684344430345912852, guid: 4e44818f5ae25b44a90d0d28b3261c59, type: 3}
-  m_Color: {r: 0.81761, g: 0.81761, b: 0.81761, a: 1}
+  m_Color: {r: 0.454902, g: 0.6445124, b: 0.91764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -247,6 +249,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &908104545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908104541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4edbb0636d95eb54d88cf9b5fbe122c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CirclePulse
+  audioSource: {fileID: 1866125049}
+  fftSize: 1024
+  fftWindow: 5
+  lowHz: 60
+  highHz: 150
+  avgFollow: 0.02
+  thresholdMultiplier: 1.26
+  minBeatInterval: 0.12
+--- !u!114 &908104546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908104541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a5eb41cc666904fad6975a06eb9c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  beat: {fileID: 908104545}
+  baseScale: 1.93
+  scaleAdd: 0.12
+  baseColor: {r: 1, g: 1, b: 1, a: 1}
+  baseGlow: 1
+  glowAdd: 2.5
 --- !u!1 &1342218224
 GameObject:
   m_ObjectHideFlags: 0
